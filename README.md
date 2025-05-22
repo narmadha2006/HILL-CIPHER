@@ -29,7 +29,35 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+#include <stdio.h>
+int main()
+{
+unsigned int key[3][3] = {{6, 24, 1}, {13, 16, 10}, {20, 17, 15}};
+unsigned int inverseKey[3][3] = {{8, 5, 10}, {21, 8, 21}, {21, 12, 8}};
+char msg[4];
+unsigned int enc[3] = {0}, dec[3] = {0};
+printf("Enter plain text: ");
+scanf("%3s", msg);
+for (int i = 0; i < 3; i++)
+for (int j = 0; j < 3; j++)
+enc[i] += key[i][j] * (msg[j] - 'A') % 26;
+printf("Encrypted Cipher Text: %c%c%c\n", enc[0] % 26 + 'A', enc[1] % 26 + 'A', enc[2] % 26 +
+'A');
+for (int i = 0; i < 3; i++)
+for (int j = 0; j < 3; j++)
+dec[i] += inverseKey[i][j] * enc[j] % 26;
+printf("Decrypted Cipher Text: %c%c%c\n", dec[0] % 26 + 'A', dec[1] % 26 + 'A', dec[2] % 26
++ 'A');
+return 0;
+}
+```
 
 ## OUTPUT
 
+![Screenshot 2025-03-17 102411](https://github.com/user-attachments/assets/c4099864-bc33-4b8c-88c8-289cf3a99ac4)
+
+
 ## RESULT
+
+The program is executed successfully.
